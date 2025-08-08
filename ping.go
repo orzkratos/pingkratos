@@ -5,6 +5,7 @@ import (
 
 	"github.com/go-kratos/kratos/v2/log"
 	pb "github.com/orzkratos/pingkratos/pingpong"
+	"github.com/orzkratos/zapkratos"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
@@ -14,7 +15,14 @@ type PingService struct {
 }
 
 func NewPingService(logger log.Logger) *PingService {
-	slog := log.NewHelper(logger)
+	return NewPingServiceV3(log.NewHelper(logger))
+}
+
+func NewPingServiceV2(zapKratos *zapkratos.ZapKratos) *PingService {
+	return NewPingServiceV3(zapKratos.NewHelper("ping-kratos"))
+}
+
+func NewPingServiceV3(slog *log.Helper) *PingService {
 	return &PingService{
 		slog: slog,
 	}
