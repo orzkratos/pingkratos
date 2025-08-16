@@ -3,7 +3,7 @@
 
 openapi: 3.0.3
 info:
-    title: DEMO-TITLE
+    title: PING-KRATOS
     version: 0.0.1
 paths:
     /api/service/ping:
